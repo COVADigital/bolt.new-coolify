@@ -1,0 +1,28 @@
+# Ignore Git and GitHub files
+.git
+.github/
+
+# Ignore Husky configuration files
+.husky/
+
+# Ignore documentation and metadata files
+CONTRIBUTING.md
+LICENSE
+README.md
+
+# Ignore environment files and sensitive information
+.env
+.env.local   # Local environment for testing (ensure this is not part of the image)
+*.example
+
+# Ignore build outputs, cache, and logs
+**/*.log
+**/node_modules  # Installed inside the container during build
+**/dist
+**/build
+**/.cache
+logs
+dist-ssr
+
+# Ignore macOS system files
+.DS_Store
