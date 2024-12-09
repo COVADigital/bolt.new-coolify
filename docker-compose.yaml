@@ -23,9 +23,9 @@ services:
       - production # Assigns production profile.
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:5173']
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      interval: 45s
+      timeout: 15s
+      retries: 5
 
   # Development environment configuration
   app-dev:
@@ -70,9 +70,9 @@ services:
     profiles: ['development', 'default'] # Assigns development and default profiles.
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:5173']
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      interval: 45s
+      timeout: 15s
+      retries: 5
 
 networks:
   default:
