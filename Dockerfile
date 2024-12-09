@@ -15,6 +15,9 @@ COPY . .
 # Expose the port the app runs on
 EXPOSE 5173
 
+# Ensure `bindings.sh` is executable
+RUN chmod +x ./bindings.sh
+
 # --------------------------
 # Production Image
 # --------------------------
