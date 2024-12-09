@@ -1,0 +1,79 @@
+services:
+  # Production environment configuration
+  app-prod:
+    image: bolt-ai:production
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: bolt-ai-production
+      args:
+        ENV: production # Explicitly pass the build environment
+    ports:
+      - '5173:5173' # Production port mapping
+    env_file: '.env' # Using .env for environment variables.
+    environment:
+      - NODE_ENV=production
+      - COMPOSE_PROFILES=production
+      - PORT=5173
+      - RUNNING_IN_DOCKER=true
+    extra_hosts:
+      - 'host.docker.internal:host-gateway' # Adds internal host gateway resolution for Docker.
+    command: pnpm run dockerstart # Default command for production.
+    profiles:
+      - production # Assigns production profile.
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:5173']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Development environment configuration
+  app-dev:
+    image: bolt-ai:development
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: bolt-ai-development
+      args:
+        ENV: development # Explicitly pass the build environment
+    ports:
+      - '5174:5173' # Development port mapping
+    environment:
+      - NODE_ENV=development
+      - VITE_HMR_PROTOCOL=ws # WebSocket protocol for Hot Module Reloading.
+      - VITE_HMR_HOST=localhost # HMR host for development.
+      - VITE_HMR_PORT=5173 # HMR port for development.
+      - CHOKIDAR_USEPOLLING=true # File watcher configuration for Docker environments.
+      - WATCHPACK_POLLING=true # Another watcher adjustment for development.
+      - PORT=5173
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - HuggingFace_API_KEY=${HuggingFace_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - OPEN_ROUTER_API_KEY=${OPEN_ROUTER_API_KEY}
+      - GOOGLE_GENERATIVE_AI_API_KEY=${GOOGLE_GENERATIVE_AI_API_KEY}
+      - OLLAMA_API_BASE_URL=${OLLAMA_API_BASE_URL}
+      - TOGETHER_API_KEY=${TOGETHER_API_KEY}
+      - TOGETHER_API_BASE_URL=${TOGETHER_API_BASE_URL}
+      - VITE_LOG_LEVEL=${VITE_LOG_LEVEL:-debug}
+      - DEFAULT_NUM_CTX=${DEFAULT_NUM_CTX:-32768}
+      - RUNNING_IN_DOCKER=true
+    extra_hosts:
+      - 'host.docker.internal:host-gateway' # Adds internal host gateway resolution for Docker.
+    volumes:
+      - type: bind
+        source: .
+        target: /app
+        consistency: cached
+      - /app/node_modules
+    command: pnpm run dev --host 0.0.0.0 # Command to start development server.
+    profiles: ['development', 'default'] # Assigns development and default profiles.
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:5173']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  default:
+    name: boltnew-coolify_default
