@@ -18,6 +18,13 @@ services:
       - RUNNING_IN_DOCKER=true
     extra_hosts:
       - 'host.docker.internal:host-gateway' # Adds internal host gateway resolution for Docker.
+    volumes:
+      - type: bind
+        source: ./env.local
+        target: /app/.env.local
+      - type: bind
+        source: ./env
+        target: /app/.env
     command: pnpm run dockerstart # Default command for production.
     profiles:
       - production # Assigns production profile.
@@ -61,6 +68,12 @@ services:
     extra_hosts:
       - 'host.docker.internal:host-gateway' # Adds internal host gateway resolution for Docker.
     volumes:
+      - type: bind
+        source: ./env.local
+        target: /app/.env.local
+      - type: bind
+        source: ./env
+        target: /app/.env
       - type: bind
         source: .
         target: /app
