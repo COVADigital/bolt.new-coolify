@@ -197,6 +197,9 @@ importers:
       remark-gfm:
         specifier: ^4.0.0
         version: 4.0.0
+      remix:
+        specifier: ^2.15.0
+        version: 2.15.0
       remix-island:
         specifier: ^0.2.0
         version: 0.2.0(@remix-run/react@2.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(@remix-run/server-runtime@2.15.0(typescript@5.7.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -4787,6 +4790,10 @@ packages:
       zod:
         optional: true
 
+  remix@2.15.0:
+    resolution: {integrity: sha512-AUo1clAQ1bs1HtFJwm17vL/Tow6dBxiKSfjJAdP85FFm61PQfSA992ZAHeU+bXgfg242tA0H07HLapIRaP0c8w==}
+    engines: {node: '>=18.0.0'}
+
   require-like@0.1.2:
     resolution: {integrity: sha512-oyrU88skkMtDdauHDuKVrgR+zuItqr6/c//FXzvmxRGMexSDc6hNvJInGW3LL46n+8b50RykrvwSUIIQH2LQ5A==}
 
@@ -7828,7 +7835,7 @@ snapshots:
       '@babel/plugin-syntax-typescript': 7.25.9(@babel/core@7.26.0)
       '@vanilla-extract/babel-plugin-debug-ids': 1.1.0
       '@vanilla-extract/css': 1.16.1
-      esbuild: 0.17.6
+      esbuild: 0.17.19
       eval: 0.1.8
       find-up: 5.0.0
       javascript-stringify: 2.1.0
@@ -11000,6 +11007,8 @@ snapshots:
       '@remix-run/router': 1.21.0
       react: 18.3.1
       zod: 3.23.8
+
+  remix@2.15.0: {}
 
   require-like@0.1.2: {}
 
