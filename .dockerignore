@@ -12,17 +12,29 @@ README.md
 
 # Ignore environment files and sensitive information
 .env
-.env.local   # Local environment for testing (ensure this is not part of the image)
+.env.local
 *.example
 
 # Ignore build outputs, cache, and logs
 **/*.log
-**/node_modules  # Installed inside the container during build
+**/node_modules
 **/dist
 **/build
 **/.cache
 logs
 dist-ssr
+
+# Ignore temporary files
+*.tmp
+*.swp
+
+# Ignore IDE and editor configurations
+.vscode/
+.idea/
+
+# Ignore testing and debugging artifacts
+__tests__/
+coverage/
 
 # Ignore macOS system files
 .DS_Store
