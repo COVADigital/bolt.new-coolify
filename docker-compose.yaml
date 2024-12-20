@@ -20,10 +20,10 @@ services:
       - 'host.docker.internal:host-gateway' # Adds internal host gateway resolution for Docker.
     volumes:
       - type: bind
-        source: ./env.local
+        source: ./.env.local
         target: /app/.env.local
       - type: bind
-        source: ./env
+        source: ./.env
         target: /app/.env
     command: pnpm run dockerstart # Default command for production.
     profiles:
@@ -69,10 +69,10 @@ services:
       - 'host.docker.internal:host-gateway' # Adds internal host gateway resolution for Docker.
     volumes:
       - type: bind
-        source: ./env.local
+        source: ./.env.local
         target: /app/.env.local
       - type: bind
-        source: ./env
+        source: ./.env
         target: /app/.env
       - type: bind
         source: .
